@@ -1,5 +1,5 @@
 import './TaskCard.css'
-
+import React from 'react';
 const TaskCard = (props) => {
     let msg = "Due on: " + props.dueDate
     if(!props.dueDate) msg = "Completed on: " + props.completedAtDate 
@@ -11,5 +11,4 @@ const TaskCard = (props) => {
         </div>
     );
 }
-
 export default TaskCard
