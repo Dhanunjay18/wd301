@@ -5,18 +5,24 @@ interface TaskFormProps {
 }
 interface TaskFormState {
     title: string;
+    dueDate: string;
+    description: string;
 }
 class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
   constructor(props: TaskFormProps) {
     super(props);
     this.state = {
-        title : ""
+        title : "",
+        dueDate: "",
+        description: ""
     }
   }
   addTask: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const newTask = {
-      title: this.state.title
+      title: this.state.title,
+      dueDate: this.state.dueDate,
+      description: this.state.description
     }
     this.props.addTask(newTask);
     this.setState({ title: "" });
@@ -25,11 +31,21 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
         console.log(`${event.target.value}`);
         this.setState({ title: event.target.value });
       };
+    descriptionChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        console.log(`${event.target.value}`);
+        this.setState({ description: event.target.value });
+      };
+    dueDateChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        console.log(`${event.target.value}`);
+        this.setState({ dueDate: event.target.value });
+      };
 render(){
     return (
       <form onSubmit={this.addTask}>
-        <input type="text"  value={this.state.title} onChange={this.titleChanged}/>
-        <button type="submit">Add item</button>
+        Title: <input id="todoTitle" type="text"  value={this.state.title} onChange={this.titleChanged} required/> <br />
+        Description: <input id="todoDescription" type="text"  value={this.state.description} onChange={this.descriptionChanged}/> <br />
+        Duedate: <input id="todoDueDate" type="date"  value={this.state.dueDate} onChange={this.dueDateChanged} required/> <br />
+        <button id="addTaskButton" type="submit">Add item</button>
       </form>
     )
   }
