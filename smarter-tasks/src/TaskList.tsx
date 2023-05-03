@@ -1,11 +1,11 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import Task from "./Task";
 import { TaskItem } from "./types";
 interface Props {
   tasks: TaskItem[];
 }
-interface State {}
+// interface State {}
 
 
 const TaskList = (props: Props) => {
