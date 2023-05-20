@@ -29,7 +29,7 @@ const TaskList = (props: Props) => {
   const list = () => {     
     return props.tasks.map((task, idx) => (
       <li>
-        <Task key={idx} title={task.title} dueDate={task.dueDate} description={task.description} />  
+        <Task key={idx} id={task.id} title={task.title} dueDate={task.dueDate} description={task.description} />  
         <button id="deleteTaskButton" className="deleteTaskButton" onClick={() => deleteTask(idx)}>Delete this Task {idx}</button>      
       </li>
       ));

@@ -1,9 +1,11 @@
 import React from "react";
 import { TaskItem } from "./types";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 interface TaskFormProps {
     addTask: (task: TaskItem) => void;
 }
 interface TaskFormState {
+    id: number;
     title: string;
     dueDate: string;
     description: string;
@@ -11,6 +13,7 @@ interface TaskFormState {
 
 const TaskForm = (props: TaskFormProps) => {
   const [formState, setFormState] = React.useState<TaskFormState>({
+    id: 1,
     title: "",
     description: "",
     dueDate: "",
@@ -23,7 +26,7 @@ const TaskForm = (props: TaskFormProps) => {
       return;
     }
     props.addTask(formState);
-    setFormState({ title: "", description: "", dueDate: "" });
+    setFormState({ id: 1, title: "", description: "", dueDate: "" });
   };
 
   const titleChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
