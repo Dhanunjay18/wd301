@@ -2,7 +2,7 @@ import React from "react";
 import './TaskCard.css';
 import { Link } from "react-router-dom";
 interface TaskProp {
-  id: number;
+  id: string;
   title: string;
   description: string;
   dueDate : string;

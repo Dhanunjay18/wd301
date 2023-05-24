@@ -20,7 +20,7 @@ const TaskDetailsPage: React.FC = () => {
     }
   );
   
-  const task = taskAppState.tasks.find(task => task.id === Number(id));
+  const task = taskAppState.tasks.find(task => task.id === id);
 
     // const task = taskAppState.tasks[Number(id)]
 

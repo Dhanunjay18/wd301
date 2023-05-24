@@ -4,15 +4,17 @@ interface TaskFormProps {
     addTask: (task: TaskItem) => void;
 }
 interface TaskFormState {
-    id: number;
+    id: string;
     title: string;
     dueDate: string;
     description: string;
 }
 
+const id = Date.now().toString(36);
+
 const TaskForm = (props: TaskFormProps) => {
   const [formState, setFormState] = React.useState<TaskFormState>({
-    id: 1,
+    id: id,
     title: "",
     description: "",
     dueDate: "",
@@ -25,7 +27,7 @@ const TaskForm = (props: TaskFormProps) => {
       return;
     }
     props.addTask(formState);
-    setFormState({ id: 1, title: "", description: "", dueDate: "" });
+    setFormState({ id: id, title: "", description: "", dueDate: "" });
   };
 
   const titleChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {

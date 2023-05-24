@@ -5,7 +5,6 @@ import { TaskItem } from "./types";
 interface Props {
   tasks: TaskItem[];
 }
-// interface State {}
 
 
 const TaskList = (props: Props) => {

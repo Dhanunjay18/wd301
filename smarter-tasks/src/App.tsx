@@ -25,7 +25,7 @@ function App() {
        <Route path="/signin" element={ <Signin/>} />    
        <Route path="/notfound" element={<NotFound/>} />
        {/* https://dev.to/jkevinbaluyot/react-v17-redirect-route-if-the-url-didnt-exist-2f37 */}
-       <Route path="*" element={< Navigate to={{pathname: "/notfound"}} / >}/>
+       <Route path="*" element={<Navigate to={{pathname: "/notfound"}} />} />
      </Routes>
    </div>
  );
