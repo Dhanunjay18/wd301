@@ -21,6 +21,10 @@ const TaskDetailsPage: React.FC = () => {
   );
   
   const task = taskAppState.tasks.find((task) => task.id === id);
+
+    // const task = taskAppState.tasks[Number(id)]
+
+    console.log(task)
   return (
     <div className="bg-white shadow-md rounded-md p-4">
       <div className="flex justify-between items-center mb-4">
