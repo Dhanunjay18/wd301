@@ -14,7 +14,7 @@ const Task = (props: TaskProp) => {
       <Link to={`/tasks/${props.id}`}>
         <h2 className="text-base font-bold my-1">{props.title}</h2>
       </Link>
-      <p className="text-sm text-slate-500">{props.dueDate}</p>
+      <h2>{props.dueDate}</h2>
       <p className="text-sm text-slate-500">
         {props.description}
       </p>      
