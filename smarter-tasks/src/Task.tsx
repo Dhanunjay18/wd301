@@ -9,8 +9,9 @@ interface TaskProp {
 }
 
 const Task = (props: TaskProp) => {
-  return (    
-    <div className="TaskItem">
+  return (
+    // removed className = "TaskItem" here    
+    <div> 
       <Link to={`/tasks/${props.id}`}>
         <h2 className="text-base font-bold my-1">{props.title}</h2>
       </Link>
