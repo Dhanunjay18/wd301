@@ -1,34 +1,25 @@
-import React from "react";
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import "./App.css";
-
-import Header from "./Header";
-import HomePage from "./HomePage";
-import TaskApp from "./TaskApp";
-import TaskDetailsPage from "./TaskDetailsPage";
-import Signin from "./Signin";
-import { ProtectedRoute } from "./ProtectedRoute";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFound from "./NotFound";
+import Signup from './pages/signup';
+// Dialogue 1: First, we've to import the Signin component
+import Signin from './pages/signin';
+import Dashboard from './pages/dashboard';
+import { ProtectedRoute } from './ProtectedRoute';
 
-
-function App() {
-
- const location = useLocation();
-
- return (
-   <div>
-    {location.pathname !== "/signin" && location.pathname !== "/notfound" && <Header />}
-     <Routes>
-       <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
-       <Route path="/tasks" element={<ProtectedRoute element={ <TaskApp/> } />} />
-       <Route path="/tasks/:id" element={<ProtectedRoute element={ <TaskDetailsPage/> } />} />
-       <Route path="/signin" element={ <Signin/>} />    
-       <Route path="/notfound" element={<NotFound/>} />
-       {/* https://dev.to/jkevinbaluyot/react-v17-redirect-route-if-the-url-didnt-exist-2f37 */}
-       <Route path="*" element={<Navigate to={{pathname: "/notfound"}} />} />
-     </Routes>
-   </div>
- );
-}
-
+const App = () => {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        { /* Dialogue 2: Then we will add route for signin path and render Signin page there */}
+        <Route path="/signin" element={<Signin/>} />        
+        <Route path="/dashboard" element={<ProtectedRoute element={ <Dashboard/> } />} />
+        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/notfound" />} />
+      </Routes>
+    </div>
+  );
+};
 export default App;
