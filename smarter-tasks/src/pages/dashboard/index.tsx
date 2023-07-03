@@ -21,8 +21,8 @@ const Dashboard: React.FC = () => {
       <div>
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Email : {userData.email} </h2>
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Name : {userData.name}</h2>
+        <button id="logout-link" onClick={handleSignout} className="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign Out</button>
       </div>
-      <button id="logout-link" onClick={handleSignout}> Sign Out </button>
     </div>
   );
 }
