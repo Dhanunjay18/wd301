@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.dark {
+  @apply bg-slate-800 text-zinc-50;
+}
