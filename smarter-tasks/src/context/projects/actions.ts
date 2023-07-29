@@ -37,6 +37,7 @@ export const addProject = async (dispatch: any, args: any) => {
     // And if everything goes well with the API call, we will dispatch an action, 
     // with `type` set to `ADD_PROJECT_SUCCESS` and in `payload` we will send the 
     // new project `data`.
+    // console.log(data)
     dispatch({ type: 'ADD_PROJECT_SUCCESS', payload: data });
 
     // Next, I'll return a status called "ok", with value `true`

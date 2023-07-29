@@ -1,17 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
-
-// First I'll import the addProject function
 import { addProject } from '../../context/projects/actions';
-
-// Then I'll import the useProjectsDispatch hook from projects context
 import { useProjectsDispatch } from "../../context/projects/context";
 type Inputs = {
   name: string
 };
 const NewProject = () => {
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false) // For Popups 
   const [error, setError] = useState(null)
   const dispatchProjects = useProjectsDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();

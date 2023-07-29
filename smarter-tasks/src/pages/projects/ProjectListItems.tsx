@@ -12,7 +12,7 @@ export default function ProjectListItems() {
   // Next, I'll destructure the state object to gain access to projects, 
   // isLoading, isError and errorMessage property.
   const { projects, isLoading, isError, errorMessage } = state
-  console.log(projects);
+  // console.log(projects);
 
   // If `isLoading` is true, and there are no projects, in that case, 
   // I'll show a loading text
