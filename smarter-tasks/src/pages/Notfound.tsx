@@ -11,7 +11,7 @@ const Notfound = () => {
       >
         Go Back
       </Link>
-    </div>
+    </div>   
   );
 };
 
