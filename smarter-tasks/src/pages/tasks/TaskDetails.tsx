@@ -1,34 +1,43 @@
 import { Dialog, Transition, Listbox } from "@headlessui/react";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { CommentsProvider } from "../../context/comment/context";
-import { Comments } from "./comments/Comments";
 import { useTasksDispatch, useTasksState } from "../../context/task/context";
 import { updateTask } from "../../context/task/actions";
 import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 import { useMembersState } from "../../context/members/context";
+import { CommentsProvider } from "../../context/comment/context";
+import { Comments } from "./comments/Comments";
+
 type TaskFormUpdatePayload = TaskDetailsPayload & {
   selectedPerson: string;
 };
-const formattingDate = (isoDate: string) => {
+const formatDateForPicker = (isoDate: string) => {
   const obj = new Date(isoDate);
   return `${obj.getFullYear()}-${String(obj.getMonth() + 1).padStart(2, "0")}-${String(obj.getDate()).padStart(2, "0")}`;
 };
+
 const TaskDetails = () => {
   let [isOpen, setIsOpen] = useState(true);
+
   let { projectID, taskID } = useParams();
   let navigate = useNavigate();
+
+  // Extract project and task details.
   const projectState = useProjectsState();
   const taskListState = useTasksState();
   const taskDispatch = useTasksDispatch();
+
   const memberState = useMembersState();
+
   const selectedProject = projectState?.projects.filter(
     (project) => `${project.id}` === projectID
   )[0];
+
   const selectedTask = taskListState.projectData.tasks[taskID ?? ""];
+  // Use react-form-hook to manage the form. Initialize with data from selectedTask.
   const [selectedPerson, setSelectedPerson] = useState(
     selectedTask.assignedUserName ?? ""
   );
@@ -41,16 +50,19 @@ const TaskDetails = () => {
       title: selectedTask.title,
       description: selectedTask.description,
       selectedPerson: selectedTask.assignedUserName,
-      dueDate: formattingDate(selectedTask.dueDate),
+      dueDate: formatDateForPicker(selectedTask.dueDate),
     },
   });
+
   if (!selectedProject) {
     return <>No such Project!</>;
   }
+
   function closeModal() {
     setIsOpen(false);
     navigate("../../");
   }
+
   const onSubmit: SubmitHandler<TaskFormUpdatePayload> = async (data) => {
     const assignee = memberState?.members?.filter(
       (member) => member.name === selectedPerson
@@ -62,6 +74,7 @@ const TaskDetails = () => {
     });
     closeModal();
   };
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -181,6 +194,7 @@ const TaskDetails = () => {
                         Cancel
                       </button>
                     </form>
+
                     <CommentsProvider>
                       <Comments />
                     </CommentsProvider>
@@ -194,4 +208,5 @@ const TaskDetails = () => {
     </>
   );
 };
+
 export default TaskDetails;

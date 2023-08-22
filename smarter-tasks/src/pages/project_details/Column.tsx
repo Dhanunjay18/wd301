@@ -1,9 +1,6 @@
 import Task from "./Task";
 import { Droppable } from "react-beautiful-dnd";
 import React, { forwardRef } from "react";
-
-
-
 import { ColumnData, TaskDetails } from "../../context/task/types";
 
 const Container = (props: React.PropsWithChildren) => {

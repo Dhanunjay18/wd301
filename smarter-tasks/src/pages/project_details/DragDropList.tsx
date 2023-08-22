@@ -31,9 +31,7 @@ const DragDropList: React.FC<{ data: ProjectData }> = (props) => {
     const start = props.data.columns[startKey];
     const finish = props.data.columns[finishKey];
 
-    const startTaskIDs = Array.from(start.taskIDs);
-    // Remove the item from `startTaskIDs`
-    const updatedItems = startTaskIDs.splice(source.index, 1);
+    
 
     
     if (start === finish) {
@@ -51,13 +49,14 @@ const DragDropList: React.FC<{ data: ProjectData }> = (props) => {
           [newColumn.id]: newColumn,
         },
       };
-      reorderTasks(taskDispatch, newState);
-      
+      reorderTasks(taskDispatch, newState);      
       return;
     }
     // start and finish list are different
 
-    
+    const startTaskIDs = Array.from(start.taskIDs);
+    // Remove the item from `startTaskIDs`
+    const updatedItems = startTaskIDs.splice(source.index, 1);
 
     const newStart = {
       ...start,
@@ -85,6 +84,7 @@ const DragDropList: React.FC<{ data: ProjectData }> = (props) => {
     reorderTasks(taskDispatch, newState);
     const updatedTask = props.data.tasks[updatedItems[0]];
     updatedTask.state = finishKey;
+    updateTask(taskDispatch, projectID ?? "", updatedTask);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
