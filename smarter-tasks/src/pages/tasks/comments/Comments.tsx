@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { addComment, getComments } from "../../../context/comment/actions";
 import { useCommentsDispatch } from "../../../context/comment/context";
 import { Comment } from "../../../context/comment/types";
+import ErrorBoundary from "../../../components/ErrorBoundary";
 import { CommentListItems } from "./CommentListItems";
+
 export const Comments = () => {
   const CommentsDispatch = useCommentsDispatch();
   const { projectID, taskID } = useParams();
@@ -57,7 +59,11 @@ export const Comments = () => {
           Comment
         </button>
       </form>
-      <CommentListItems />
+      <ErrorBoundary>
+        <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+          <CommentListItems />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };

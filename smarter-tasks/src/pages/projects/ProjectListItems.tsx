@@ -12,6 +12,10 @@ export default function ProjectListItems() {
   // Next, I'll destructure the state object to gain access to projects, 
   // isLoading, isError and errorMessage property.
   const { projects, isLoading, isError, errorMessage } = state
+  // This check is to validate ErrorBoundary Implementation. Remove this before milestone submission
+  if (projects.length === 0) {
+    throw Error("Error!!!");
+  }
   // console.log(projects);
 
   // If `isLoading` is true, and there are no projects, in that case, 
