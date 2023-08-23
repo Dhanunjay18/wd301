@@ -32,6 +32,7 @@ const Task = forwardRef<
           </p>
         </div>
           <button
+            aria-label="Name"
             className="deleteTaskButton cursor-pointer h-4 w-4 rounded-full my-5 mr-5"
             onClick={(event) => {
               event.preventDefault();
